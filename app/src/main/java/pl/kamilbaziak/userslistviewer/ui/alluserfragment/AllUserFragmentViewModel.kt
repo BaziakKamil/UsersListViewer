@@ -21,7 +21,7 @@ class AllUserFragmentViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val progressVisible = ObservableField(false)
+    val progressVisible = MutableLiveData<Boolean>()
 
     private val allUserChannel =
         Channel<AllUserListEvent>()
@@ -34,7 +34,7 @@ class AllUserFragmentViewModel @Inject constructor(
     //getting users from repo and from  and etting value of _userList
     fun getUsersFromRepo(){
         //showing progressbar
-        progressVisible.set(true)
+        progressVisible.value = true
 
         viewModelScope.launch {
             //the GET request from repo -> from retrofit service and get response
@@ -47,7 +47,7 @@ class AllUserFragmentViewModel @Inject constructor(
             }
 
             //hiding progressbar
-            progressVisible.set(false)
+            progressVisible.value = false
         }
     }
 

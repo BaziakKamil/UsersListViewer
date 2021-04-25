@@ -35,6 +35,13 @@ class PickedUserFragment : Fragment(R.layout.fragment_picked_user) {
             viewModel.loadImageWithUri(imageViewUserAvatar)
         }
 
+        viewModel.progressVisible.observe(viewLifecycleOwner, { shoudBeVisible ->
+            if(shoudBeVisible)
+                binding.progressBar.visibility = View.VISIBLE
+            else
+                binding.progressBar.visibility = View.GONE
+        })
+
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.pickedUserEvent.collect { event ->
                 when (event) {
@@ -81,7 +88,7 @@ class PickedUserFragment : Fragment(R.layout.fragment_picked_user) {
     }
 
     //checking if text is empty and text or hide textview
-    private fun ifTextEmptyHideViewElseSetText(view: TextView, text: String?, textToInsertBeforeValue: String) {
+    fun ifTextEmptyHideViewElseSetText(view: TextView, text: String?, textToInsertBeforeValue: String) {
         val textToInsert = "$textToInsertBeforeValue $text"
         if (text.isNullOrEmpty()) {
             view.visibility = View.GONE
@@ -92,7 +99,7 @@ class PickedUserFragment : Fragment(R.layout.fragment_picked_user) {
     }
 
     //checking if text is empty and text or hide textview
-    private fun ifEmptyBlogSIteHideLayout(view: TextView, layoutToHide: ViewGroup, text: String?): Boolean {
+    fun ifEmptyBlogSIteHideLayout(view: TextView, layoutToHide: ViewGroup, text: String?): Boolean {
         return if (text.isNullOrEmpty()) {
             layoutToHide.visibility = View.GONE
             false

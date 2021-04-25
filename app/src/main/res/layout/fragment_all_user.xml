@@ -1,32 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-tools:context=".ui.alluserfragment.AllUserFragment">
-
-<data>
-    <variable
-        name="allUserFragmentViewModel"
-        type="pl.kamilbaziak.userslistviewer.ui.alluserfragment.AllUserFragmentViewModel" />
-</data>
-
-<FrameLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.alluserfragment.AllUserFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/all_user_recycler_view"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animatedVisibility="@{allUserFragmentViewModel.progressVisible}"
+        android:id="@+id/progress_bar"
         android:background="@color/light_grey"
         android:visibility="visible"
-        tools:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -39,4 +30,3 @@ tools:context=".ui.alluserfragment.AllUserFragment">
 
     </FrameLayout>
 </FrameLayout>
-</layout>

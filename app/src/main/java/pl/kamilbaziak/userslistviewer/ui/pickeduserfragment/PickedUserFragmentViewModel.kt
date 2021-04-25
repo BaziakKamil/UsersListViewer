@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import pl.kamilbaziak.userslistviewer.model.UserModel
 import pl.kamilbaziak.userslistviewer.repository.UserRepository
-import pl.kamilbaziak.userslistviewer.ui.alluserfragment.AllUserFragmentViewModel
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +20,7 @@ class PickedUserFragmentViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
 
-    val progressVisible = ObservableField(true)
+    val progressVisible = MutableLiveData<Boolean>()
 
     private val pickedUserChannel =
         Channel<PickedUserListEvent>()
@@ -36,7 +35,7 @@ class PickedUserFragmentViewModel @Inject constructor(
 
     fun getUserByUsername(){
         //showing progressbar
-        progressVisible.set(true)
+        progressVisible.value = true
 
         viewModelScope.launch {
             val response = userRepository.getUserByUserName(pickedUserUsername)
@@ -48,7 +47,7 @@ class PickedUserFragmentViewModel @Inject constructor(
                 Log.e("RETROFIT_ERROR", response.code().toString())
             }
             //hiding progressbar
-            progressVisible.set(false)
+            progressVisible.value = false
         }
     }
 

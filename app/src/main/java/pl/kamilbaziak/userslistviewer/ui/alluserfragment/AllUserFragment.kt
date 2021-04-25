@@ -53,6 +53,13 @@ class AllUserFragment : Fragment(R.layout.fragment_all_user), AllUserAdapter.OnI
             }
         }
 
+        viewModel.progressVisible.observe(viewLifecycleOwner, { shoudBeVisible ->
+            if(shoudBeVisible)
+                binding.progressBar.visibility = View.VISIBLE
+            else
+                binding.progressBar.visibility = View.GONE
+        })
+
         viewModel.userList.observe(viewLifecycleOwner, {
             allUserAdapter.submitList(it)
         })
