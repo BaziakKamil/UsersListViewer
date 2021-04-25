@@ -55,7 +55,7 @@ class PickedUserFragmentViewModel @Inject constructor(
         val url = pickedUserAvatarUrl
         if(url.isNotEmpty())
             Glide.with(imageView.context).load(Uri.parse(url)).into(imageView)
-        //TODO show dialof
+        //TODO show dialog
     }
 
     //for "communication" with fragment purposes

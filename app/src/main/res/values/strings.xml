@@ -4,4 +4,8 @@
     <string name="synchronizeText">Synchronize</string>
     <string name="followersText">Followers: </string>
     <string name="locationText">Location: </string>
+    <string name="cancel_text">Cancel</string>
+    <string name="noNetworkConnectionDialogMessage">No network connection, check if it is enabled or enable it</string>
+    <string name="noNetworkConnectionDIalogTitle">No network connection</string>
+    <string name="ok_text">Ok</string>
 </resources>
